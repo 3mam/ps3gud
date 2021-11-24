@@ -20,6 +20,21 @@ let argument = () => {
   return parser.parse_args()
 }
 
+let exitIfNotSet = ({ id, download }) => {
+  if (!id && !download) {
+    console.log('Games id and download folder is not set.\nUse -h for more information.')
+    exit(-1)
+  }
+  if (!id) {
+    console.log('Games id is not set')
+    exit(-1)
+  }
+  if (!download) {
+    console.log('Download folder is not set')
+    exit(-1)
+  }
+}
+
 let exitIfNotExist = downloadFolder => {
   if (!existsSync(downloadFolder)) {
     console.error(`Folder ${downloadFolder} for download don\'t exist!`)
@@ -56,6 +71,7 @@ let download = async (url, folder, name, cursorLine) => {
 
 /** MAIN */
 let args = argument()
+exitIfNotSet(args)
 exitIfNotExist(args.download)
 
 let gamesList = loadJson('./db.json')
