@@ -1,16 +1,21 @@
 # PlayStation 3 game update download
 
 Simple tool for downloading patch for games.
-App require NodeJS
 
-### install
-```
-git clone https://github.com/3mam/ps3gut.git
-npm install
-```
+## build
+For building app is require .net 6
+> git clone https://github.com/3mam/ps3gut.git
 
-### example
-```
-./ps3gud -d download -i BLES00246 BLES01807
-```
-This allowed to download all patch for METAL GEAR SOLID 4  and GTA V
+#### build for Linux
+> dotnet publish -r linux-x64 -c release --self-contained    
+
+#### build for Windows 10
+> dotnet publish -r win10-x64 -c release --self-contained   
+
+copy **db.json** to that same place where is app
+
+
+## example
+> ./ps3gud -i BLES01807
+
+This allowed to download all patch for GTA V
